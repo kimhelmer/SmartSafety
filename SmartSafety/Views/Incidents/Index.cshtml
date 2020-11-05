@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SmartSafety.Models.Incidents>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SiteCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CameraID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeStampAtSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimestampAtSourceInLocalTimeZone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Label)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FrameID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payload)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimestampAtPlatform)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SiteCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CameraID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStampAtSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimestampAtSourceInLocalTimeZone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Label)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FrameID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Payload)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimestampAtPlatform)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

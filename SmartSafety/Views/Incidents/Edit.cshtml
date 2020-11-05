@@ -1,0 +1,84 @@
+﻿@model SmartSafety.Models.Incidents
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Incidents</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="SiteCode" class="control-label"></label>
+                <input asp-for="SiteCode" class="form-control" />
+                <span asp-validation-for="SiteCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceID" class="control-label"></label>
+                <input asp-for="DeviceID" class="form-control" />
+                <span asp-validation-for="DeviceID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grid" class="control-label"></label>
+                <input asp-for="Grid" class="form-control" />
+                <span asp-validation-for="Grid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraID" class="control-label"></label>
+                <input asp-for="CameraID" class="form-control" />
+                <span asp-validation-for="CameraID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeStampAtSource" class="control-label"></label>
+                <input asp-for="TimeStampAtSource" class="form-control" />
+                <span asp-validation-for="TimeStampAtSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimestampAtSourceInLocalTimeZone" class="control-label"></label>
+                <input asp-for="TimestampAtSourceInLocalTimeZone" class="form-control" />
+                <span asp-validation-for="TimestampAtSourceInLocalTimeZone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Label" class="control-label"></label>
+                <input asp-for="Label" class="form-control" />
+                <span asp-validation-for="Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrameID" class="control-label"></label>
+                <input asp-for="FrameID" class="form-control" />
+                <span asp-validation-for="FrameID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Payload" class="control-label"></label>
+                <input asp-for="Payload" class="form-control" />
+                <span asp-validation-for="Payload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimestampAtPlatform" class="control-label"></label>
+                <input asp-for="TimestampAtPlatform" class="form-control" />
+                <span asp-validation-for="TimestampAtPlatform" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
