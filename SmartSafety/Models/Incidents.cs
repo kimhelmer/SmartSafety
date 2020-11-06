@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace SmartSafety.Models
 
         public string Grid { get; set; }
 
+        [Display(Name = "Camera ID")]
         public int CameraID { get; set; }
 
         public string TimeStampAtSource { get; set; }

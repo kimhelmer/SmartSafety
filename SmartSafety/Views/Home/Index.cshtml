@@ -1,8 +1,27 @@
-﻿@{
+﻿@model IEnumerable<SmartSafety.Models.Incidents>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Incident Handling</h1>
+    <p>Somebody should learn stylesheets (again).</p>
+    
+
+ 
+
+  
+    @foreach (var item in Model)
+    {
+
+        <p>Incident detected on Camera ID: @Html.DisplayFor(modelItem => item.CameraID)</p>
+        <p>Time of incident is @Html.DisplayFor(modelItem => item.TimeStampAtSource)</p>
+        <div> <a href="@Html.DisplayFor(modelItem => item.Url)"><img src="@Html.DisplayFor(modelItem => item.Url)" style="width:50%"></a> </div>
+    }
+
+
+
+
+
 </div>
