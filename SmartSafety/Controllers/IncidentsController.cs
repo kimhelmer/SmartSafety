@@ -41,13 +41,23 @@ namespace SmartSafety.Controllers
 
         public async Task<IActionResult> IncidentReview()
         {
+            var incident = await _context.Incidents.OrderBy(i => i.TimeStampAtSource).FirstOrDefaultAsync(p => p.Status == null);
 
-            List<Incidents> incidents = await _context.Incidents
-                .Take(10)
-                .OrderBy(i => i.TimeStampAtSource)
-                .ToListAsync();
+            if(incident == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
-            return View(incidents);
+            IncidentViewModel model = new IncidentViewModel();
+            model.ID = incident.ID;
+            model.Grid = incident.Grid;
+            model.CameraID = incident.CameraID;
+            model.TimestampAtSourceInLocalTimeZone = incident.TimestampAtSourceInLocalTimeZone;
+            model.Url = incident.Url;
+            model.Status = incident.Status;
+            model.Description = incident.Description;
+                       
+            return View(model);
         }
 
         // GET: Incidents/Details/5
@@ -88,6 +98,37 @@ namespace SmartSafety.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(incidents);
+        }
+
+        // POST: Incidents/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Review(int id, [Bind("ID,Grid,CameraID,TimestampAtSourceInLocalTimeZone,Url,Status,Description")] IncidentViewModel model)
+        {
+            if (id != model.ID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var incident =  _context.Incidents.Single(p => p.ID == model.ID);
+                    incident.Status = model.Status;
+                    incident.Description = model.Description;
+
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    //
+                }
+            }
+
+            return RedirectToAction(nameof(IncidentReview));
         }
 
         // GET: Incidents/Edit/5

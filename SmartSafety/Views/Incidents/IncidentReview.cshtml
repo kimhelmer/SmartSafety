@@ -1,98 +1,58 @@
-﻿@model IEnumerable<SmartSafety.Models.Incidents>
+﻿@model SmartSafety.Models.IncidentViewModel
 
 
-    @{
-        ViewData["Title"] = "Review Incident";
-    }
+@{
+    ViewData["Title"] = "Kims Review Incident";
+}
 
-    <h1>Index</h1>
+<h1>Incident Review</h1>
 
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.SiteCode)
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Review">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Grid" class="control-label"></label>
+                <input asp-for="Grid" class="form-control" />
+                <span asp-validation-for="Grid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraID" class="control-label"></label>
+                <input asp-for="CameraID" class="form-control" />
+                <span asp-validation-for="CameraID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimestampAtSourceInLocalTimeZone" class="control-label"></label>
+                <input asp-for="TimestampAtSourceInLocalTimeZone" class="form-control" />
+                <span asp-validation-for="TimestampAtSourceInLocalTimeZone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
 
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DeviceID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Grid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CameraID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TimeStampAtSource)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TimestampAtSourceInLocalTimeZone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Label)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FrameID)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Payload)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TimestampAtPlatform)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Url)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SiteCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DeviceID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Grid)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CameraID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TimeStampAtSource)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TimestampAtSourceInLocalTimeZone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Label)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FrameID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Payload)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TimestampAtPlatform)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Url)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div>
+    <a asp-action="IncidentReview">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
