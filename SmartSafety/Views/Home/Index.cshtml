@@ -1,24 +1,36 @@
 ﻿@model IEnumerable<SmartSafety.Models.Incidents>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Incident Handling3</h1>
-    <p>Somebody is learning stylesheets (again).</p>
-    
+    <h1>Incident Handling</h1>
 
- 
 
-  
-    @foreach (var item in Model)
+    @if (SignInManager.IsSignedIn(User))
     {
 
-        <p>Incident detected on Camera ID: @Html.DisplayFor(modelItem => item.CameraID)</p>
-        <p>Time of incident is @Html.DisplayFor(modelItem => item.TimeStampAtSource)</p>
-        <div> <a href="@Html.DisplayFor(modelItem => item.Url)"><img src="@Html.DisplayFor(modelItem => item.Url)" style="width:50%"></a> </div>
+    <p>User is logged in </p>
+    @foreach (var item in Model)
+            {
+
+    <p>Incident detected on Camera ID: @Html.DisplayFor(modelItem => item.CameraID)</p>
+    <p>Time of incident is @Html.DisplayFor(modelItem => item.TimeStampAtSource)</p>
+    <div> <a href="@Html.DisplayFor(modelItem => item.Url)"><img src="@Html.DisplayFor(modelItem => item.Url)" style="width:50%"></a> </div>
+            }
     }
+    else
+    {
+    <p>Please Login to show data</p>
+    <img src="~/img/Pecem-CSR.jpg" style="width:50%">
+    }
+
+
+
 
 
 
