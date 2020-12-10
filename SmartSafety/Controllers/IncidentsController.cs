@@ -22,8 +22,11 @@ namespace SmartSafety.Controllers
         // GET: Incidents
         public async Task<IActionResult> Index()
         {
+            List<Incidents> incidents = await _context.Incidents
+           .Take(10)
+           .OrderBy(i => i.TimeStampAtSource)
+           .ToListAsync();
 
-            List<Incidents> incidents = await _context.Incidents.ToListAsync();
 
             return View(incidents);
         }
